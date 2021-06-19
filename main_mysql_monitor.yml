@@ -1,5 +1,5 @@
 ---
-- name: Mysql
+- name: Mysql Monitor
   hosts: db
   gather_facts: false
   become: true
@@ -9,4 +9,4 @@
         upgrade: dist
         update_cache: true
   roles:
-    - mysql
+    - mysql_monitor

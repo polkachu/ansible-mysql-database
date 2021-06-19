@@ -19,7 +19,7 @@
   command: ufw allow 9100/tcp
   when:
     - not ufw_status_result.stdout is search("9100/tcp.*ALLOW IN.*Anywhere")
-    -
+
 - name: enable firewall
   shell: |
     set -o pipefail

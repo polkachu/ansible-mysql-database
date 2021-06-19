@@ -1,0 +1,45 @@
+- name: download mysql_exporter
+  get_url:
+    url: 'https://github.com/prometheus/mysqld_exporter/releases/download/v{{ mysql_exporter_version }}/mysqld_exporter-{{ mysql_exporter_version }}.linux-amd64.tar.gz'
+    checksum: 'sha256:626584c5d1c0cf09982302763e69db24fabe5dc736e7b694a3f8fdfee3d8d9a2'
+    dest: '/tmp/mysql_exporter-{{ mysql_exporter_version }}.linux-amd64.tar.gz'
+    mode: '0700'
+
+- name: unarchive mysql_exporter
+  unarchive:
+    src: '/tmp/mysql_exporter-{{ mysql_exporter_version }}.linux-amd64.tar.gz'
+    remote_src: yes
+    dest: '/tmp'
+
+- name: copy mysql_exporter binary
+  copy:
+    src: '/tmp/mysqld_exporter-{{ mysql_exporter_version }}.linux-amd64/mysqld_exporter'
+    dest: '/usr/local/bin/'
+    remote_src: true
+    owner: root
+    group: root
+    mode: 755
+
+- name: Copy mysql_exporter configure file with username and password
+  template:
+    src: mysql_exporter.cnf.j2
+    dest: /etc/.mysqld_exporter.cnf
+    owner: root
+    group: root
+    mode: '600'
+
+- name: create mysql_exporter systemd unit
+  template:
+    src: mysql_exporter.service.j2
+    dest: /etc/systemd/system/mysql_exporter.service
+    owner: root
+    group: root
+    mode: '600'
+
+- name: start mysqld_exporter service
+  systemd:
+    name: mysql_exporter
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  changed_when: false

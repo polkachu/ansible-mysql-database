@@ -10,5 +10,5 @@
         upgrade: dist
         update_cache: true
   roles:
-    - prepare
     - mysql
+    - monitor

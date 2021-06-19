@@ -3,4 +3,4 @@
   include: firewall.yml
 
 - name: Install mysql
-  include: install.yml
+  include: mysql.yml

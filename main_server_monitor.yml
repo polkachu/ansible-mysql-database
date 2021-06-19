@@ -1,7 +1,6 @@
 ---
-- name: Mysql
+- name: Server Monitor
   hosts: db
-  user: ubuntu
   gather_facts: false
   become: true
   pre_tasks:
@@ -10,4 +9,4 @@
         upgrade: dist
         update_cache: true
   roles:
-    - prepare
+    - server_monitor
