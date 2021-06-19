@@ -1,0 +1,12 @@
+---
+- name: Firewall
+  include: firewall.yml
+
+- name: node_exporter
+  include: node_exporter.yml
+
+- name: process_exporter
+  include: process_exporter.yml
+
+- name: promtail
+  include: promtail.yml

@@ -1,0 +1,13 @@
+---
+- name: Mysql
+  hosts: db
+  user: ubuntu
+  gather_facts: false
+  become: true
+  pre_tasks:
+    - name: update and upgrade
+      apt:
+        upgrade: dist
+        update_cache: true
+  roles:
+    - prepare
