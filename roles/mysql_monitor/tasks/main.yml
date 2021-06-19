@@ -1,3 +1,6 @@
 ---
+- name: firewall
+  include: firewall.yml
+
 - name: mysql-exporter
   include: mysql_exporter.yml
