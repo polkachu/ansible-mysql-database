@@ -1,7 +1,6 @@
 - name: download mysql_exporter
   get_url:
     url: 'https://github.com/prometheus/mysqld_exporter/releases/download/v{{ mysql_exporter_version }}/mysqld_exporter-{{ mysql_exporter_version }}.linux-amd64.tar.gz'
-    checksum: 'sha256:626584c5d1c0cf09982302763e69db24fabe5dc736e7b694a3f8fdfee3d8d9a2'
     dest: '/tmp/mysql_exporter-{{ mysql_exporter_version }}.linux-amd64.tar.gz'
     mode: '0700'
 
