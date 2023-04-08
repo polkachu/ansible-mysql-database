@@ -11,7 +11,7 @@ This is an opinionated setup script for a MySQL SERVER. It assumes that you have
 Make your own inventory file first.
 
 ```bash
-cp inventory.sample inventory
+cp inventory.sample inventory.ini
 ```
 
 ## Step-By-Step Server Setup

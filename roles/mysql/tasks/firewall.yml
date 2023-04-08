@@ -11,9 +11,7 @@
   changed_when: false
 
 - name: open alternative mysql port
-  command: "ufw allow {{ mysql_port }}/tcp"
-  when:
-    - not ufw_status_result.stdout is search(mysql_port ~ "/tcp.*ALLOW IN.*Anywhere")
+  command: 'ufw allow {{ mysql_port }}/tcp'
 
 - name: enable firewall
   shell: |
@@ -21,4 +19,3 @@
     echo "y" | ufw enable
   args:
     executable: /bin/bash
-  when: not ufw_status_result.stdout is search("Status.* active")
